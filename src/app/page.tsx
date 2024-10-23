@@ -1,18 +1,26 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import WeatherCard from '../components/WeatherCard';
 import { getWeatherByCity } from '@/services/weatherService';
 
+interface WeatherData {
+  city: string;
+  temperature: number;
+  description: string;
+  icon: string;
+  wind: number;
+  humidity: number;
+  feels_like: number;
+}
+
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
-  // Estado para almacenar los datos filtrados
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
-  // Estado para almacenar los datos del clima
-  const [weatherData, setWeatherData] = useState<any[]>([]);
+  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
 
-
-  const cities = [
+  // Lista de ciudades (departamentos)
+  const cities = useMemo(() => [
     'Ahuachapán',
     'Cabañas',
     'Chalatenango',
@@ -27,7 +35,7 @@ export default function HomePage() {
     'Santa Ana',
     'Sonsonate',
     'Usulután',
-  ];
+  ], []);
 
   // Filtrar los departamentos
   useEffect(() => {
@@ -36,7 +44,7 @@ export default function HomePage() {
         city.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
-  }, [searchTerm]);
+  }, [searchTerm, cities]);
 
   // Obtener los datos del clima para las ciudades filtradas
   useEffect(() => {
@@ -76,7 +84,6 @@ export default function HomePage() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
