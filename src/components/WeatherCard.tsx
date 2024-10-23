@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image'; // Importamos el componente Image
 
 interface WeatherCardProps {
     city: string;
@@ -26,10 +27,11 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                     <h2 className="text-2xl font-bold text-white">{city}</h2>
                     <p className="text-gray-300 capitalize">{description}</p>
                 </div>
-                <img
+                <Image
                     src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
                     alt={description}
-                    className="w-20 h-20"
+                    width={80} // Ajustamos el tamaño (puedes cambiar según el diseño)
+                    height={80} // Ajustamos el tamaño
                 />
             </div>
             <div className="mt-6">
