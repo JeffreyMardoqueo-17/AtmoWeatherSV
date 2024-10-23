@@ -1,6 +1,7 @@
+"use client"
 import React from 'react';
-import WeatherCard from './components/WeatherCard';
-import { getWeatherByCity } from '@/app/services/weatherService';
+import WeatherCard from '../components/WeatherCard';
+import { getWeatherByCity } from '@/services/weatherService';
 
 export default async function HomePage() {
   const cities = [
@@ -36,8 +37,10 @@ export default async function HomePage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-blue-200 p-8">
-      <h1 className="text-4xl font-bold text-center text-gray-900 mb-10">Clima en El Salvador</h1>
+    <div
+      className="min-h-screen bg-gradient-to-b from-neutral-950 to-blue-950 to-black text-white p-8"
+    >
+      <h1 className="text-5xl font-bold text-center mb-12">Clima en El Salvador</h1>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {weatherData.map((weather, index) => (
           <WeatherCard
