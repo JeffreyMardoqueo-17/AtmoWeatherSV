@@ -27,7 +27,6 @@ body {
   }
 }
 
-/* Estilo para la barra de desplazamiento con Tailwind */
 ::-webkit-scrollbar {
   width: 7px;
 }
